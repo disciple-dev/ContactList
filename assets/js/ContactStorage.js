@@ -11,8 +11,19 @@
 	
 	const init = function(){
 		
-		if(!localStorage.getItem('contacts')){
+		if(!localStorage.getItem(contactKey)){
+			
 			localStorage.setItem(contactKey, JSON.stringify([]))			
+		}
+		
+		if(list().length == 0){
+			
+			localStorage.setItem(contactKey, JSON.stringify([
+				{firstName: "Aaron", lastName: "Bob", email: "abob@example.com"},
+				{firstName: "Charlie", lastName: "Doolittle", email: "cdoolittle@example.com"},
+				{firstName: "Erich", lastName: "Fillion", email: "efillion@example.com"},
+				{firstName: "Gertrude", lastName: "Hamilton", email: "ghamilton@example.com"}
+			]))
 		}
 
 	}

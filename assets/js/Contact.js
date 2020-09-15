@@ -4,6 +4,11 @@
 	const emailProof = new RegExp(/\S+@\S+\.\S+/)
 	return {
 		create: function(first, last, email){
+			
+			if(first) first = first.trim()
+			if(last) last = last.trim()
+			if(email) email = email.trim().toLowerCase()
+			
 			return {
 				firstName: first,
 				lastName: last,
@@ -14,14 +19,15 @@
 			email: function(email){
 				return emailProof.test(email)
 			},
+			uniqueEmail: function(list, email){
+				 return list.indexOf(email) == -1
+			},
 			firstName: function(name){
-				if(!name) return false
-				if(!name.length) return false
+				if(!name || name.length < 3 || name.lenth > 25) return false
 				return true
 			},
 			lastName: function(name){
-				if(!name) return false
-				if(!name.length) return false
+				if(name && name.length < 2 || name.length > 30) return false
 				return true
 			},
 			contact: function(contact, checkEmail){
@@ -29,18 +35,6 @@
 				if(!Contact.validate.firstName(contact.firstName)) return false
 				if(!Contact.validate.lastName(contact.lastName)) return false
 				return true
-			},
-			isDuplicate: function(list, contact){
-				
-				for(var i = 0; i < list.length; i++){
-					if(list[i].firstName.toLowerCase() == contact.firstName.toLowerCase()
-					&& list[i].lastName.toLowerCase() == contact.lastName.toLowerCase()
-					&& list[i].email.toLowerCase() == contact.email.toLowerCase())
-					
-					return true
-				}
-				
-				return false
 			}
 		}
 	}

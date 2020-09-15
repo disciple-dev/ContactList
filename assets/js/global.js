@@ -1,16 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-  //   const tempList = [
-  //     Contact.create("a", "b", "a@b.com"),
-  //     Contact.create("c", "d", "c@d.com"),
-  //     Contact.create("e", "f", "e@f.com"),
-  //     Contact.create("g", "h", "g@h.com"),
-  //   ];
-  //
-  //   if (ContactStorage.list().length == 0) {
-  //     tempList.forEach((contact) => {
-  //       ContactStorage.add(contact);
-  //     });
-  //   }
 
   const contactsList = document.getElementById("contacts-list");
   const contactCreate = document.getElementById("create-contact");
@@ -69,8 +57,6 @@ document.addEventListener("DOMContentLoaded", function () {
             while (row.tagName.toLowerCase() != "tr") {
               row = row.parentElement;
 
-              console.log(row);
-
               if (row.tagName.toLowerCase() == "tr") {
                 row.parentNode.removeChild(row);
               }
@@ -95,12 +81,12 @@ document.addEventListener("DOMContentLoaded", function () {
       );
 
       let validContact = Contact.validate.contact(contactData, true);
-      let notDuplicate = !Contact.validate.isDuplicate(
-        ContactStorage.list(),
-        contactData
-      );
+	  let emails = ContactStorage.list().map(function(item){
+		  return item.email
+	  })
+      let isUniqueEmail = Contact.validate.uniqueEmail(emails, contactData.email)
 
-      if (validContact && notDuplicate) {
+      if (validContact && isUniqueEmail) {
         ContactStorage.add(contactData);
       }
     });
