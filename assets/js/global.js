@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     contactsList.addEventListener("click", function (e) {
       if (e.target.className.indexOf(deleteClass) != -1) {
-        if (confirm(`Do you want to delete contact ${e.target.dataset.id}?`)) {
+        if (confirm('Do you want to delete contact ' + e.target.dataset.id + '?')) {
           if (ContactStorage.remove(e.target.dataset.id)) {
             let row = e.target.parentElement;
             while (row.tagName.toLowerCase() != "tr") {
