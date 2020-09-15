@@ -9,6 +9,8 @@ The application will have 3 pages:
 2. Create Contact Page - This page will be used to create a new contact.
 3. Edit Contact Page - This page will be used to change any of the contact information, except for the emailContact Information will consist of the following fields:
 
+This application works in Internet Explorer.
+
 ## Contact Model
 
 - __Email Address__ - This is a unique value that can not be edited after being created
