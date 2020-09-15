@@ -30,7 +30,7 @@
 				if(!Contact.validate.lastName(contact.lastName)) return false
 				return true
 			},
-			isDuplicate(list, contact){
+			isDuplicate: function(list, contact){
 				
 				for(var i = 0; i < list.length; i++){
 					if(list[i].firstName.toLowerCase() == contact.firstName.toLowerCase()
