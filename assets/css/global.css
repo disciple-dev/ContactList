@@ -1,0 +1,39 @@
+body {
+  font-size: 16px;
+  font-family: sans-serif;
+}
+
+nav {
+  padding: 10px;
+  display: flex;
+  align-content: center;
+  justify-content: flex-end;
+}
+
+table {
+}
+
+th {
+  padding: 10px;
+}
+
+td {
+  padding: 10px;
+}
+
+.button {
+  padding: 5px 10px;
+  margin: 0 5px;
+  border: 1px black solid;
+  text-decoration: none;
+  color: black;
+  border-radius: 0.25rem;
+}
+
+.button:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+*:disabled {
+	cursor: not-allowed;
+}
