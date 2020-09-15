@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
       el.innerHTML = text;
       return el;
     },
-    add: function (contact, index) {
+    add: function (contact, id) {
       let tr = document.createElement("tr");
 
       tr.appendChild(contactTable.createElement(contact.firstName));
@@ -20,15 +20,15 @@ document.addEventListener("DOMContentLoaded", function () {
       let actions = document.createElement("td");
 
       let editLink = document.createElement("a");
-      editLink.href = "edit-contact.html?id=" + index;
+      editLink.href = "edit-contact.html?id=" + id;
       editLink.className = "action edit button";
       editLink.innerHTML = "Edit";
-      editLink.dataset.id = index;
+      editLink.dataset.id = id;
 
       let deleteLink = document.createElement("a");
       deleteLink.className = "action remove-contact button";
       deleteLink.innerHTML = "Delete";
-      deleteLink.dataset.id = index;
+      deleteLink.dataset.id = id;
 
       actions.appendChild(editLink);
       actions.appendChild(deleteLink);
@@ -44,10 +44,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (contactsList) {
     let list = ContactStorage.list();
-
-    for (var i = 0; i < list.length; i++) {
-      contactTable.add(list[i], i);
-    }
+	
+	Object.keys(list).forEach(function(key){
+		contactTable.add(list[key], key)
+	})
 
     contactsList.addEventListener("click", function (e) {
       if (e.target.className.indexOf(deleteClass) != -1) {
@@ -81,9 +81,13 @@ document.addEventListener("DOMContentLoaded", function () {
       );
 
       let validContact = Contact.validate.contact(contactData, true);
-	  let emails = ContactStorage.list().map(function(item){
-		  return item.email
+	  let contacts = ContactStorage.list()
+	  let keys = Object.keys(contacts)
+	  
+	  let emails = Object.keys(ContactStorage.list()).map(function(item){
+		  return contacts[item].email
 	  })
+	  
       let isUniqueEmail = Contact.validate.uniqueEmail(emails, contactData.email)
 
       if (validContact && isUniqueEmail) {

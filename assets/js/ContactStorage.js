@@ -18,12 +18,12 @@
 		
 		if(list().length == 0){
 			
-			localStorage.setItem(contactKey, JSON.stringify([
-				{firstName: "Aaron", lastName: "Bob", email: "abob@example.com"},
-				{firstName: "Charlie", lastName: "Doolittle", email: "cdoolittle@example.com"},
-				{firstName: "Erich", lastName: "Fillion", email: "efillion@example.com"},
-				{firstName: "Gertrude", lastName: "Hamilton", email: "ghamilton@example.com"}
-			]))
+			localStorage.setItem(contactKey, JSON.stringify({
+				0: { firstName: "Aaron", lastName: "Bob", email: "abob@example.com"},
+				1: { firstName: "Charlie", lastName: "Doolittle", email: "cdoolittle@example.com"},
+				3: { firstName: "Erich", lastName: "Fillion", email: "efillion@example.com"},
+				4: { firstName: "Gertrude", lastName: "Hamilton", email: "ghamilton@example.com"}
+			}))
 		}
 
 	}
@@ -36,9 +36,16 @@
 		return list()[id]
 	}
 	
+	const createId = function(){
+		let ids = Object.keys(list())
+		
+		return Math.max.apply(null, ids) + 1
+	}
+	
 	const add = function(contact){
 		let contacts = list()
-		contacts.push(contact)
+		
+		contacts[createId().toString()] = contact
 		
 		localStorage.setItem(contactKey, JSON.stringify(contacts))
 	}
@@ -66,11 +73,11 @@
 		}
 	}
 	
-	const remove = function(index){
+	const remove = function(id){
 		
 		let contacts = list()
 		
-		contacts.splice(index, 1)
+		delete contacts[id]
 		
 		try{
 			localStorage.setItem(contactKey, JSON.stringify(contacts))
