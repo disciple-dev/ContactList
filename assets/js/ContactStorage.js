@@ -71,15 +71,6 @@
 
 			return false
 		}
-		
-		// for(var i = 0; i < contacts.length; i++){
-		// 	
-		// 	if(contacts[i].firstName == firstName && contacts[i].email == email){
-		// 		contacts.splice(i, 1)
-		// 		localStorage.setItem(contactKey, JSON.stringify((contacts)))
-		// 		break
-		// 	}
-		// }
 	}
 	
 	return {
