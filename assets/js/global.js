@@ -115,6 +115,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       if (validContact && isUniqueEmail) {
         ContactStorage.add(contactData);
+        document.location = "index.html"
       }
     });
   }
@@ -164,6 +165,9 @@ document.addEventListener("DOMContentLoaded", function () {
 			
 			let updated = ContactStorage.update(id, contactData)
 			
+      if(updated) {
+        document.location = "index.html"
+      } 
 			// TODO: add message to user that saving failed
 			
 			submitButton.disabled = false;
