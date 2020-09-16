@@ -10,15 +10,15 @@
       <a href="index.html" class="button">Contact List</a>
     </nav>
     <form id="edit-contact">
-      <div>
+      <div class="form-group">
         <label for="first-name">First Name</label>
         <input type="text" id="first-name" minlength="3" maxlength="25" required/>
       </div>
-      <div>
+      <div class="form-group">
         <label for="last-name">Last Name</label>
         <input type="text" id="last-name"  minlength="2" maxlength="30"/>
       </div>
-      <div>
+      <div class="form-group">
         <label for="email-address">Email Address</label>
         <input
           type="email"
@@ -27,7 +27,10 @@
           disabled
         />
       </div>
-      <button id="submit-contact" type="button">Submit</button>
+      <div class="submission">
+        <button id="submit-contact" type="button">Submit</button>
+        <a class="remove-contact button">Delete</a>  
+      </div>
     </form>
     <script src="assets/js/Contact.js"></script>
     <script src="assets/js/ContactStorage.js"></script>

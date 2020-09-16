@@ -45,9 +45,9 @@ document.addEventListener("DOMContentLoaded", function () {
   if (contactsList) {
     let list = ContactStorage.list();
 	
-	Object.keys(list).forEach(function(key){
-		contactTable.add(list[key], key)
-	})
+  	Object.keys(list).forEach(function(key){
+  		contactTable.add(list[key], key)
+  	})
 
     contactsList.addEventListener("click", function (e) {
       if (e.target.className.indexOf(deleteClass) != -1) {
@@ -116,10 +116,22 @@ document.addEventListener("DOMContentLoaded", function () {
 		const lastName = document.getElementById("last-name")
 		const email = document.getElementById("email-address")
 		const submitButton = document.getElementById("submit-contact")
+    const deleteLink = document.querySelector('a.remove-contact')
+    
+    
+    deleteLink.addEventListener('click', function(){
+      if(confirm('Are you sure you want to delete ' + contact.firstName + ' ' + contact.lastName + '?')){
+        if(ContactStorage.remove(id)){
+          document.location = "index.html"
+        }
+      }
+    })
 		
 		firstName.value = contact.firstName
 		lastName.value = contact.lastName
 		email.value = contact.email
+    
+    deleteLink.dataset.id = id
 		
 		submitButton.addEventListener('click', function(){
 			
