@@ -3,15 +3,21 @@ document.addEventListener("DOMContentLoaded", function () {
   const contactsList = document.getElementById("contacts-list");
   const contactCreate = document.getElementById("create-contact");
   const contactEdit = document.getElementById("edit-contact");
+  const populateContacts = document.getElementById('populate-contacts')
   
-  document.getElementById('populate-contacts').addEventListener('click', function(){
-    if(confirm('This will erase all contacts and add the original ones back in.')){
-      ContactStorage.empty()
-      ContactStorage.init()
-      contactsList.querySelector('tbody').innerHTML = null
-      loadData()
-    }
-  })
+  if(populateContacts){
+    
+    populateContacts.addEventListener('click', function(){
+      
+      if(confirm('This will erase all contacts and add the original ones back in.')){
+        
+        ContactStorage.empty()
+        ContactStorage.init()
+        contactsList.querySelector('tbody').innerHTML = null
+        loadData()
+      }
+    })
+  }
 
   const contactTable = {
     createElement: function (text) {
