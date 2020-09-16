@@ -45,9 +45,11 @@ document.addEventListener("DOMContentLoaded", function () {
   if (contactsList) {
     let list = ContactStorage.list();
 	
-  	Object.keys(list).forEach(function(key){
-  		contactTable.add(list[key], key)
-  	})
+  	if(Object.keys(list).length) {
+      Object.keys(list).forEach(function(key){
+    		contactTable.add(list[key], key)
+    	})
+    }
 
     contactsList.addEventListener("click", function (e) {
       if (e.target.className.indexOf(deleteClass) != -1) {
