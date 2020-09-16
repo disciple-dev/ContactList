@@ -42,6 +42,10 @@
 		return Math.max.apply(null, ids) + 1
 	}
 	
+	const empty = function(){
+		localStorage.removeItem(contactKey)
+	}
+	
 	const add = function(contact){
 		let contacts = list()
 		
@@ -97,6 +101,7 @@
 		get: getContact,
 		add: add,
 		update: update,
-		remove: remove
+		remove: remove,
+		empty: empty
 	}
 })

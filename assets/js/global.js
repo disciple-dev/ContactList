@@ -3,6 +3,15 @@ document.addEventListener("DOMContentLoaded", function () {
   const contactsList = document.getElementById("contacts-list");
   const contactCreate = document.getElementById("create-contact");
   const contactEdit = document.getElementById("edit-contact");
+  
+  document.getElementById('populate-contacts').addEventListener('click', function(){
+    if(confirm('This will erase all contacts and add the original ones back in.')){
+      ContactStorage.empty()
+      ContactStorage.init()
+      contactsList.querySelector('tbody').innerHTML = null
+      loadData()
+    }
+  })
 
   const contactTable = {
     createElement: function (text) {
@@ -42,7 +51,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const deleteClass = "remove-contact";
   const editClass = "edit-contact";
 
-  if (contactsList) {
+  const loadData = function(){
+    
     let list = ContactStorage.list();
 	
   	if(Object.keys(list).length) {
@@ -50,6 +60,11 @@ document.addEventListener("DOMContentLoaded", function () {
     		contactTable.add(list[key], key)
     	})
     }
+  }
+
+  if (contactsList) {
+    
+    loadData()
 
     contactsList.addEventListener("click", function (e) {
       if (e.target.className.indexOf(deleteClass) != -1) {
