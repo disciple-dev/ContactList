@@ -1,39 +1,39 @@
-(function(root, factory){
+(function (root, factory) {
 	root.Contact = factory()
-})(this, function(){
+})(this, function () {
 	const emailProof = new RegExp(/\S+@\S+\.\S+/)
 	return {
-		create: function(first, last, email){
-			
-			if(first) first = first.trim()
-			if(last) last = last.trim()
-			if(email) email = email.trim().toLowerCase()
-			
+		create: function (contact) {
+
+			if (!contact.firstName || !contact.lastName || !contact.email) {
+				return false;
+			}
+
 			return {
-				firstName: first,
-				lastName: last,
-				email: email
+				firstName: contact.firstName.trim(),
+				lastName: contact.lastName.trim(),
+				email: contact.email.trim().toLowerCase()
 			}
 		},
 		validate: {
-			email: function(email){
+			email: function (email) {
 				return emailProof.test(email)
 			},
-			uniqueEmail: function(list, email){
-				 return list.indexOf(email) == -1
+			uniqueEmail: function (list, email) {
+				return list.indexOf(email) == -1
 			},
-			firstName: function(name){
-				if(!name || name.length < 3 || name.lenth > 25) return false
+			firstName: function (name) {
+				if (!name || name.length < 3 || name.lenth > 25) return false
 				return true
 			},
-			lastName: function(name){
-				if(name && name.length < 2 || name.length > 30) return false
+			lastName: function (name) {
+				if (name && name.length < 2 || name.length > 30) return false
 				return true
 			},
-			contact: function(contact, checkEmail){
-				if(checkEmail && !Contact.validate.email(contact.email)) return false
-				if(!Contact.validate.firstName(contact.firstName)) return false
-				if(!Contact.validate.lastName(contact.lastName)) return false
+			contact: function (contact, checkEmail) {
+				if (checkEmail && !Contact.validate.email(contact.email)) return false
+				if (!Contact.validate.firstName(contact.firstName)) return false
+				if (!Contact.validate.lastName(contact.lastName)) return false
 				return true
 			}
 		}
